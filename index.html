@@ -20,21 +20,97 @@
         <a class="navbar-brand" href="#">FAQ</a>
       </div>
     </nav>
-    <main class="d-flex justify-content-center">
+    <main class="justify-content-center">
+      <h1 class="text-center display-1 mt-5 mb-5">Lista de tareas</h1>
       <div>
-        <h1 class="text-center display-1 mt-5 mb-5">Lista de tareas</h1>
+        <div class="d-flex justify-content-evenly mt-5 border">
+          <form>
+            <div>
+              <div class="row">
+                <label for="tareaTitulo" class="form-label">Titulo</label>
+                <input type="text" class="form-control" id="tareaTitulo" />
+              </div>
+              <div class="row">
+                <label for="tareaDesc" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="tareaDesc" />
+              </div>
+              <div class="border row mt-3">
+                <select
+                  class="form-select col"
+                  aria-label="tareaDia"
+                  id="tareaDia"
+                >
+                  <option selected>Dia</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                </select>
+                <select
+                  class="form-select col"
+                  aria-label="tareaMes"
+                  id="tareaMes"
+                >
+                  <option selected>Mes</option>
+                  <option value="1">Enero</option>
+                  <option value="2">Febrero</option>
+                  <option value="3">Marzo</option>
+                  <option value="4">Abril</option>
+                  <option value="5">Mayo</option>
+                  <option value="6">Junio</option>
+                  <option value="7">Julio</option>
+                  <option value="8">Agosto</option>
+                  <option value="9">Septiembre</option>
+                  <option value="10">Octubre</option>
+                  <option value="11">Noviembre</option>
+                  <option value="12">Diciembre</option>
+                </select>
+              </div>
+            </div>
+          </form>
+          <div class="d-flex justify-content-center align-items-center border">
+            <button
+              id="btn_aggTarea"
+              type="submit"
+              class="btn btn-primary"
+              style="
+                --bs-btn-padding-y: 0.25rem;
+                --bs-btn-padding-x: 1.5rem;
+                --bs-btn-font-size: 2rem;
+              "
+            >
+              Agregar tarea
+            </button>
+          </div>
+        </div>
         <div class="d-flex justify-content-center mt-5">
-          <button
-            type="button"
-            class="btn btn-primary mx-5"
-            style="
-              --bs-btn-padding-y: 0.25rem;
-              --bs-btn-padding-x: 0.5rem;
-              --bs-btn-font-size: 2rem;
-            "
-          >
-            Agregar tarea
-          </button>
           <button
             type="button"
             class="btn btn-primary mx-5"
@@ -44,10 +120,40 @@
               --bs-btn-font-size: 2rem;
             "
           >
-            Ver tareas
+            Ver todas las tareas
           </button>
         </div>
         <h3 class="text-center fs-4 mt-5 mb-5">*FECHA Y HORARIO ACTUAL*</h3>
+        <div class="d-flex justify-content-center mt-5">
+          <div class="row" id="tareas">
+            <div class="col">
+              <div class="fechaGral">
+                <div class="fechaIzq">
+                  <div class="fechaDia"></div>
+                  <div>
+                    <div class="fechaMes"></div>
+                    <div class="fechaAño"></div>
+                  </div>
+                </div>
+                <div class="tituloTarea"></div>
+                <div class="tituloDesc"></div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="fechaGral">
+                <div class="fechaIzq">
+                  <div class="fechaDia"></div>
+                  <div>
+                    <div class="fechaMes"></div>
+                    <div class="fechaAño"></div>
+                  </div>
+                </div>
+                <div class="tituloTarea"></div>
+                <div class="tituloDesc"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     <script
