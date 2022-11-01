@@ -213,7 +213,6 @@ menu();
 */
 
 let Tareas = [];
-let Tarea_reciente;
 
 class Tarea {
   constructor(titulo, descripcion, dia, mes) {
@@ -224,14 +223,19 @@ class Tarea {
   }
 }
 
-let agregarTarea = document.getElementById(btn_aggTarea);
+let btn_aggTarea = document.getElementById("btn_aggTarea");
 btn_aggTarea.onclick = (e) => {
   e.preventDefault();
   const tituloTarea = document.getElementById("tareaTitulo").value;
   const diaTarea = document.getElementById("tareaDia").value;
   const descripcionTarea = document.getElementById("tareaDesc").value;
   const mesTarea = document.getElementById("tareaMes").value;
-  Tarea_reciente = new Tarea(tituloTarea, descripcionTarea, diaTarea, mesTarea);
+  let Tarea_reciente = new Tarea(
+    tituloTarea,
+    descripcionTarea,
+    diaTarea,
+    mesTarea
+  );
   Tareas.push(Tarea_reciente);
 };
 
@@ -265,11 +269,11 @@ let opciontareas = "MostrarTareas";
 
 verTareas.onclick = () => {
   if (opciontareas == "MostrarTareas") {
-    verTareas.innerText = "Ocultar todas las tareas";
+    verTareas.innerText = "Ocultar las tareas";
     opciontareas = "OcultarTareas";
     mostrarTareas();
   } else {
-    verTareas.innerText = "Ver todas las tareas";
+    verTareas.innerText = "Ver las tareas";
     opciontareas = "MostrarTareas";
     ocultarTareas();
   }
@@ -279,10 +283,17 @@ function guardarLocal(clave, valor) {
   localStorage.setItem(clave, valor);
 }
 
-let btnStorage = document.getElementById("btn-storage");
-btnStorage.onclick = () => {
+let btnGuardarStorage = document.getElementById("btn-GuardarStorage");
+btnGuardarStorage.onclick = () => {
   guardarLocal("listaTareas", JSON.stringify(Tareas));
 };
 
-const almacenados = JSON.parse(localStorage.getItem("listaTareas"));
-Tareas = almacenados;
+let btnBorrarStorage = document.getElementById("btn-BorrarStorage");
+btnBorrarStorage.onclick = () => {
+  Tareas = [];
+  guardarLocal("listaTareas", JSON.stringify(Tareas));
+  ocultarTareas();
+};
+
+let tareasStorage = JSON.parse(localStorage.getItem("listaTareas"));
+Tareas = tareasStorage;

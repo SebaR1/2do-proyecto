@@ -110,7 +110,7 @@
             </button>
           </div>
         </div>
-        <div class="d-flex justify-content-center mt-5">
+        <div class="d-flex align-items-center justify-content-center mt-5">
           <button
             id="btn-tareas"
             type="button"
@@ -121,10 +121,10 @@
               --bs-btn-font-size: 2rem;
             "
           >
-            Ver todas las tareas
+            Ver las tareas
           </button>
           <button
-            id="btn-storage"
+            id="btn-GuardarStorage"
             type="button"
             class="btn btn-primary mx-5"
             style="
@@ -135,8 +135,19 @@
           >
             Guardar las tareas
           </button>
+          <button
+            id="btn-BorrarStorage"
+            type="button"
+            class="btn btn-primary mx-5"
+            style="
+              --bs-btn-padding-y: 0.25rem;
+              --bs-btn-padding-x: 2.42rem;
+              --bs-btn-font-size: 2rem;
+            "
+          >
+            Borrar las tareas
+          </button>
         </div>
-
         <h3 class="text-center fs-4 mt-5 mb-5">*FECHA Y HORARIO ACTUAL*</h3>
         <div class="d-flex justify-content-center mt-5">
           <div class="row border" id="tareas"></div>
