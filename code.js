@@ -213,6 +213,7 @@ menu();
 */
 
 let Tareas = [];
+let form = document.getElementById("form");
 
 class Tarea {
   constructor(titulo, descripcion, dia, mes) {
@@ -246,14 +247,18 @@ let divTareas = document.getElementById("tareas");
 function mostrarTareas() {
   for (const tarea of Tareas) {
     divTareas.innerHTML += `
-            <div class="col">
-              <div class="fechaGral">
-                <div class="fechaIzq">
-                  <div class="fechaDia">${tarea.dia}</div>
-                  <div class="fechaMes">${tarea.mes}</div>
-                </div>
-                <div class="tituloTarea">${tarea.titulo}</div>
-                <div class="tituloDesc">${tarea.descripcion}</div>
+            <div class="col d-flex">
+              <div
+                class="m-2 p-2 border justify-content-center align-items-center"
+              >
+                <div class="tituloTarea h3">${tarea.titulo}</div>
+                <div class="tituloDesc h4">${tarea.descripcion}</div>
+              </div>
+              <div
+                class="m-2 p-2 justify-content-center align-items-center border"
+              >
+                <div class="fechaDia h5 border">${tarea.dia} del</div>
+                <div class="fechaMes h5 border">${tarea.mes}</div>
               </div>
             </div>
             `;
