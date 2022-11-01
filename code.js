@@ -1,74 +1,4 @@
 /*
-//1ra clase Coderhouse 
-let num1 = parseInt(prompt("Ingresa un numero"));
-let num2 = parseInt(prompt("Ingresa otro num"));
-let suma = num1 + num2;
-
-alert("La suma de ambos numeros es= " + suma);
-
-//2da clase Coderhouse
-let nombre;
-let contraseña;
-alert("Proceso para registrarse");
-let aux1 = prompt("Ingrese un nick");
-if (aux1.length >= 5) {
-  nombre = aux1;
-} else {
-  aux1 = prompt("Ingrese otro nick de más de 5 caracteres");
-  nombre = aux1;
-}
-let aux2 = prompt("Ingrese su contraseña");
-if (aux2.length >= 10) {
-  contraseña = aux2;
-} else {
-  aux2 = prompt("Ingrese otra contraseña de más de 10 caracteres");
-  contraseña = aux2;
-}
-
-alert("Proceso para ingresar");
-let aux3 = prompt("Ingrese su nick");
-let aux4 = prompt("Ingrese su contraseña");
-
-if (aux3 == nombre && aux4 == contraseña) {
-  alert("Bienvenido " + nombre + "!");
-} else if (aux3 == nombre && aux4 != contraseña) {
-  alert("El usuario esta bien, pero esta mal la contraseña");
-} else if (aux4 != nombre && aux4 != contraseña) {
-  alert(
-    "Ni el usuario ni la contraseña esta registrado en nuestros datos, la policia esta en camino a su domicilio"
-  );
-}
-
-
-//3ra clase Coderhouse
-
-let suma = 0;
-
-for (let i = 1; i <= 5; i++) {
-  let num = parseInt(prompt("Digite el numero " + i));
-  suma = suma + num;
-}
-
-alert("La suma de los 5 numeros fue " + suma);
-
-
-
-let sum = 0;
-for (let i = 1; i <= 3; i++) {
-  let notas = parseInt(prompt("Ingrese su nota numero " + i));
-  sum = sum + notas;
-}
-let prom = sum / 3;
-if (prom >= 7) {
-  alert("Felicidades! Aprobaste la materia, tu promedio fue de " + prom);
-} else {
-  alert(
-    "Lamentablemente no alcanzo, tu promedio fue de " +
-      prom +
-      ". Exitos para la proxima!"
-  );
-}
-
 //1ER ENTREGA
 
 function pediropc() {
@@ -127,28 +57,6 @@ function menu() {
     }
   }
 }
-
-function pedirvolver() {
-  let num2 = prompt("Desea volver al menu? (si/no)");
-  if (num2 == "si" || num2 == "Si" || num2 == "SI") {
-    pediropc();
-    menu();
-  } else if (num2 == "no" || num2 == "No" || num2 == "NO") {
-    opc = 4;
-  } else {
-    alert("Ingrese una respuesta valido!");
-    pedirvolver();
-  }
-}
-
-
-let dinero = 50;
-let opc;
-
-alert("Bienvenido a un cajero automatico");
-pediropc();
-menu();
-*/
 
 //2da ENTREGA
 /*
@@ -305,6 +213,7 @@ menu();
 */
 
 let Tareas = [];
+let Tarea_reciente;
 
 class Tarea {
   constructor(titulo, descripcion, dia, mes) {
@@ -318,12 +227,62 @@ class Tarea {
 let agregarTarea = document.getElementById(btn_aggTarea);
 btn_aggTarea.onclick = (e) => {
   e.preventDefault();
-  let tituloTarea = document.getElementById(tareaTitulo);
-  let descripcionTarea = document.getElementById(tareaDesc);
-  let diaTarea = document.getElementById(tareaDia);
-  let mesTarea = document.getElementById(tareaMes);
-  let tarea = new Tarea(tituloTarea, descripcionTarea, diaTarea, mesTarea);
-  Tareas.push(tarea);
+  const tituloTarea = document.getElementById("tareaTitulo").value;
+  const diaTarea = document.getElementById("tareaDia").value;
+  const descripcionTarea = document.getElementById("tareaDesc").value;
+  const mesTarea = document.getElementById("tareaMes").value;
+  Tarea_reciente = new Tarea(tituloTarea, descripcionTarea, diaTarea, mesTarea);
+  Tareas.push(Tarea_reciente);
 };
-console.log(tituloTarea);
+
 console.log(Tareas);
+
+let divTareas = document.getElementById("tareas");
+
+function mostrarTareas() {
+  for (const tarea of Tareas) {
+    divTareas.innerHTML += `
+            <div class="col">
+              <div class="fechaGral">
+                <div class="fechaIzq">
+                  <div class="fechaDia">${tarea.dia}</div>
+                  <div class="fechaMes">${tarea.mes}</div>
+                </div>
+                <div class="tituloTarea">${tarea.titulo}</div>
+                <div class="tituloDesc">${tarea.descripcion}</div>
+              </div>
+            </div>
+            `;
+  }
+}
+function ocultarTareas() {
+  divTareas.innerHTML = ``;
+}
+
+//Mostrar y ocultar todas las tareas
+let verTareas = document.getElementById("btn-tareas");
+let opciontareas = "MostrarTareas";
+
+verTareas.onclick = () => {
+  if (opciontareas == "MostrarTareas") {
+    verTareas.innerText = "Ocultar todas las tareas";
+    opciontareas = "OcultarTareas";
+    mostrarTareas();
+  } else {
+    verTareas.innerText = "Ver todas las tareas";
+    opciontareas = "MostrarTareas";
+    ocultarTareas();
+  }
+};
+
+function guardarLocal(clave, valor) {
+  localStorage.setItem(clave, valor);
+}
+
+let btnStorage = document.getElementById("btn-storage");
+btnStorage.onclick = () => {
+  guardarLocal("listaTareas", JSON.stringify(Tareas));
+};
+
+const almacenados = JSON.parse(localStorage.getItem("listaTareas"));
+Tareas = almacenados;
