@@ -227,10 +227,10 @@ class Tarea {
 let btn_aggTarea = document.getElementById("btn_aggTarea");
 btn_aggTarea.onclick = (e) => {
   e.preventDefault();
-  const tituloTarea = document.getElementById("tareaTitulo").value;
-  const diaTarea = document.getElementById("tareaDia").value;
-  const descripcionTarea = document.getElementById("tareaDesc").value;
-  const mesTarea = document.getElementById("tareaMes").value;
+  let tituloTarea = document.getElementById("tareaTitulo").value;
+  let diaTarea = document.getElementById("tareaDia").value;
+  let descripcionTarea = document.getElementById("tareaDesc").value;
+  let mesTarea = document.getElementById("tareaMes").value;
   let Tarea_reciente = new Tarea(
     tituloTarea,
     descripcionTarea,
@@ -238,6 +238,7 @@ btn_aggTarea.onclick = (e) => {
     mesTarea
   );
   Tareas.push(Tarea_reciente);
+  Swal.fire("Agregaste una tarea!");
 };
 
 console.log(Tareas);
@@ -245,7 +246,7 @@ console.log(Tareas);
 let divTareas = document.getElementById("tareas");
 
 function mostrarTareas() {
-  for (const tarea of Tareas) {
+  for (let tarea of Tareas) {
     divTareas.innerHTML += `
             <div class="col d-flex">
               <div
@@ -291,6 +292,13 @@ function guardarLocal(clave, valor) {
 let btnGuardarStorage = document.getElementById("btn-GuardarStorage");
 btnGuardarStorage.onclick = () => {
   guardarLocal("listaTareas", JSON.stringify(Tareas));
+  Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "Guardaste tus tareas!",
+    showConfirmButton: false,
+    timer: 1000,
+  });
 };
 
 let btnBorrarStorage = document.getElementById("btn-BorrarStorage");
@@ -298,6 +306,19 @@ btnBorrarStorage.onclick = () => {
   Tareas = [];
   guardarLocal("listaTareas", JSON.stringify(Tareas));
   ocultarTareas();
+  Swal.fire({
+    title: "Estas seguro?",
+    text: "No vas a poder volver a ver tus tareas!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire("Tareas borradas!");
+    }
+  });
 };
 
 let tareasStorage = JSON.parse(localStorage.getItem("listaTareas"));
