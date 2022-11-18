@@ -11,6 +11,7 @@ class Tarea {
   }
 }
 
+//Dar el evento al boton para agregar una tarea
 let btn_aggTarea = document.getElementById("btn_aggTarea");
 btn_aggTarea.onclick = (e) => {
   e.preventDefault();
@@ -29,10 +30,7 @@ btn_aggTarea.onclick = (e) => {
   forms.reset();
 };
 
-console.log(Tareas);
-
 let divTareas = document.getElementById("tareas");
-
 function mostrarTareas() {
   for (let tarea of Tareas) {
     divTareas.innerHTML += `
@@ -58,7 +56,7 @@ function ocultarTareas() {
   divTareas.innerHTML = ``;
 }
 
-//Mostrar y ocultar todas las tareas
+//Mostrar y ocultar todas TUS tareas
 let verTareas = document.getElementById("btn-tareas");
 let opciontareas = "MostrarTareas";
 
@@ -78,6 +76,7 @@ function guardarLocal(clave, valor) {
   localStorage.setItem(clave, valor);
 }
 
+//Guardar tus tareas en el Storage
 let btnGuardarStorage = document.getElementById("btn-GuardarStorage");
 btnGuardarStorage.onclick = () => {
   guardarLocal("listaTareas", JSON.stringify(Tareas));
@@ -90,6 +89,7 @@ btnGuardarStorage.onclick = () => {
   });
 };
 
+//Borrar tus tareas en el storage
 let btnBorrarStorage = document.getElementById("btn-BorrarStorage");
 btnBorrarStorage.onclick = () => {
   Swal.fire({
@@ -110,11 +110,12 @@ btnBorrarStorage.onclick = () => {
   });
 };
 
+//Cargar las tareas del storage siempre
 let tareasStorage = JSON.parse(localStorage.getItem("listaTareas"));
 Tareas = tareasStorage;
 
+//Obtener las tareas importantes en JSON
 let divTareasImportantes = document.getElementById("tareasImp");
-
 function renderizarTareasImportantes() {
   for (let tareaImp of TareasImpJSON) {
     divTareasImportantes.innerHTML += `
