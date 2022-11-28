@@ -110,7 +110,7 @@ btnBorrarStorage.onclick = () => {
   });
 };
 
-//Cargar las tareas del storage siempre
+//Cargar las tareas del storage siempre que existan
 let tareasStorage = JSON.parse(localStorage.getItem("listaTareas"));
 if (tareasStorage) {
   Tareas = tareasStorage;
