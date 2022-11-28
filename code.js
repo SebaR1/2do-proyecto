@@ -112,7 +112,9 @@ btnBorrarStorage.onclick = () => {
 
 //Cargar las tareas del storage siempre
 let tareasStorage = JSON.parse(localStorage.getItem("listaTareas"));
-Tareas = tareasStorage;
+if (tareasStorage) {
+  Tareas = tareasStorage;
+}
 
 //Obtener las tareas importantes en JSON
 let divTareasImportantes = document.getElementById("tareasImp");
